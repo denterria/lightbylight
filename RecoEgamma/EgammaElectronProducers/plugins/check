@@ -1,0 +1,174 @@
+BuildFile.xml:<use   name="DataFormats/TrackerRecHit2D"/>
+BuildFile.xml:<use   name="DataFormats/TrackingRecHit"/>
+ElectronSeedProducer.cc:    ebRecHitCollection_ = consumes<EcalRecHitCollection> (iConfig.getParameter<edm::InputTag>("ebRecHitCollection"));
+ElectronSeedProducer.cc:    eeRecHitCollection_ = consumes<EcalRecHitCollection> (iConfig.getParameter<edm::InputTag>("eeRecHitCollection"));
+ElectronSeedProducer.cc:  // perhaps in CombinedHitPairGenerator, badly caching some EventSetup product,
+ElectronSeedProducer.cc:      << (*is).nHits() << " hits"
+ElectronSeedProducer.cc:         int detector = scl.seed()->hitsAndFractions()[0].first.subdetId() ;
+ElectronSeedProducer.cc:	noZS::EcalClusterLazyTools lazyTool_noZS(event, setup, ebRecHitCollection_, eeRecHitCollection_);
+ElectronSeedProducer.cc:	int detector = scl.seed()->hitsAndFractions()[0].first.subdetId() ;
+ElectronSeedProducer.cc:    psd1.add<std::string>("ComponentName", std::string("StandardHitPairGenerator"));
+ElectronSeedProducer.cc:    psd0.add<edm::ParameterSetDescription>("OrderedHitsFactoryPSet", psd1);
+ElectronSeedProducer.cc:    psd0.add<edm::InputTag>("hcalRecHits",edm::InputTag("hbhereco"));
+ElectronSeedProducer.cc:    psd0.add<edm::InputTag>("ebRecHitCollection", edm::InputTag("ecalRecHit", "EcalRecHitsEB"));
+ElectronSeedProducer.cc:    psd0.add<edm::InputTag>("eeRecHitCollection", edm::InputTag("ecalRecHit", "EcalRecHitsEE"));
+ElectronSeedProducer.cc:    psd3.add<std::string>("ComponentName",std::string("SeedFromConsecutiveHitsCreator"));
+ElectronSeedProducer.h:    edm::EDGetTokenT<EcalRecHitCollection> ebRecHitCollection_;
+ElectronSeedProducer.h:    edm::EDGetTokenT<EcalRecHitCollection> eeRecHitCollection_;
+ElectronSeedProducer.h:    //  edm::InputTag hcalRecHits_;
+GsfElectronBaseProducer.cc:#include "DataFormats/TrackingRecHit/interface/TrackingRecHitFwd.h"
+GsfElectronBaseProducer.cc:#include "DataFormats/EcalRecHit/interface/EcalSeverityLevel.h"
+GsfElectronBaseProducer.cc:  desc.add<edm::InputTag>("barrelRecHitCollectionTag",edm::InputTag("ecalRecHit","EcalRecHitsEB")) ;
+GsfElectronBaseProducer.cc:  desc.add<edm::InputTag>("endcapRecHitCollectionTag",edm::InputTag("ecalRecHit","EcalRecHitsEE")) ;
+GsfElectronBaseProducer.cc:  // Ecal rec hits configuration
+GsfElectronBaseProducer.cc:  desc.add<std::vector<int> >("recHitFlagsToBeExcludedBarrel") ;
+GsfElectronBaseProducer.cc:  desc.add<std::vector<int> >("recHitFlagsToBeExcludedEndcaps") ;
+GsfElectronBaseProducer.cc:  desc.add<std::vector<int> >("recHitSeverityToBeExcludedBarrel") ;
+GsfElectronBaseProducer.cc:  desc.add<std::vector<int> >("recHitSeverityToBeExcludedEndcaps") ;
+GsfElectronBaseProducer.cc:  inputCfg_.barrelRecHitCollection = consumes<EcalRecHitCollection>(cfg.getParameter<edm::InputTag>("barrelRecHitCollectionTag"));
+GsfElectronBaseProducer.cc:  inputCfg_.endcapRecHitCollection = consumes<EcalRecHitCollection>(cfg.getParameter<edm::InputTag>("endcapRecHitCollectionTag"));
+GsfElectronBaseProducer.cc:  // Ecal rec hits configuration
+GsfElectronBaseProducer.cc:  GsfElectronAlgo::EcalRecHitsConfiguration recHitsCfg ;
+GsfElectronBaseProducer.cc:  const std::vector<std::string> flagnamesbarrel = cfg.getParameter<std::vector<std::string> >("recHitFlagsToBeExcludedBarrel");
+GsfElectronBaseProducer.cc:  recHitsCfg.recHitFlagsToBeExcludedBarrel = StringToEnumValue<EcalRecHit::Flags>(flagnamesbarrel);
+GsfElectronBaseProducer.cc:  const std::vector<std::string> flagnamesendcaps = cfg.getParameter<std::vector<std::string> >("recHitFlagsToBeExcludedEndcaps");
+GsfElectronBaseProducer.cc:  recHitsCfg.recHitFlagsToBeExcludedEndcaps = StringToEnumValue<EcalRecHit::Flags>(flagnamesendcaps);
+GsfElectronBaseProducer.cc:  const std::vector<std::string> severitynamesbarrel = cfg.getParameter<std::vector<std::string> >("recHitSeverityToBeExcludedBarrel");
+GsfElectronBaseProducer.cc:  recHitsCfg.recHitSeverityToBeExcludedBarrel = StringToEnumValue<EcalSeverityLevel::SeverityLevel>(severitynamesbarrel);
+GsfElectronBaseProducer.cc:  const std::vector<std::string> severitynamesendcaps = cfg.getParameter<std::vector<std::string> >("recHitSeverityToBeExcludedEndcaps");
+GsfElectronBaseProducer.cc:  recHitsCfg.recHitSeverityToBeExcludedEndcaps = StringToEnumValue<EcalSeverityLevel::SeverityLevel>(severitynamesendcaps);
+GsfElectronBaseProducer.cc:  //recHitsCfg.severityLevelCut = cfg.getParameter<int>("severityLevelCut") ;
+GsfElectronBaseProducer.cc:     isoCfg,recHitsCfg,
+GsfElectronBaseProducer.cc:  //edm::ParameterSet orderedHitsFactoryPSet = seedConfiguration.getParameter<edm::ParameterSet>("OrderedHitsFactoryPSet") ;
+GsfElectronCoreBaseProducer.cc:  // get the Hit Pattern for the gsfTrack
+GsfElectronCoreBaseProducer.cc:  const HitPattern& gsfHitPattern = gsfTrackRef->hitPattern();
+GsfElectronCoreBaseProducer.cc:    int gsfHitCounter = 0 ;
+GsfElectronCoreBaseProducer.cc:    int numGsfInnerHits = 0 ;
+GsfElectronCoreBaseProducer.cc:    int numCtfInnerHits = 0 ;
+GsfElectronCoreBaseProducer.cc:    // get the CTF Track Hit Pattern
+GsfElectronCoreBaseProducer.cc:    const HitPattern& ctfHitPattern = ctfTkIter->hitPattern();
+GsfElectronCoreBaseProducer.cc:    trackingRecHit_iterator elHitsIt ;
+GsfElectronCoreBaseProducer.cc:    for ( elHitsIt = gsfTrackRef->recHitsBegin() ;
+GsfElectronCoreBaseProducer.cc:          elHitsIt != gsfTrackRef->recHitsEnd() ;
+GsfElectronCoreBaseProducer.cc:          elHitsIt++, gsfHitCounter++ )
+GsfElectronCoreBaseProducer.cc:      if(!((**elHitsIt).isValid()))  //count only valid Hits
+GsfElectronCoreBaseProducer.cc:      uint32_t gsfHit = gsfHitPattern.getHitPattern(HitPattern::TRACK_HITS, gsfHitCounter);
+GsfElectronCoreBaseProducer.cc:      if (!(HitPattern::pixelHitFilter(gsfHit) ||
+GsfElectronCoreBaseProducer.cc:          HitPattern::stripTIBHitFilter(gsfHit) ||
+GsfElectronCoreBaseProducer.cc:          HitPattern::stripTIDHitFilter(gsfHit)))
+GsfElectronCoreBaseProducer.cc:      numGsfInnerHits++ ;
+GsfElectronCoreBaseProducer.cc:      int ctfHitsCounter = 0 ;
+GsfElectronCoreBaseProducer.cc:      numCtfInnerHits = 0 ;
+GsfElectronCoreBaseProducer.cc:      trackingRecHit_iterator ctfHitsIt ;
+GsfElectronCoreBaseProducer.cc:      for ( ctfHitsIt = ctfTkIter->recHitsBegin() ;
+GsfElectronCoreBaseProducer.cc:            ctfHitsIt != ctfTkIter->recHitsEnd() ;
+GsfElectronCoreBaseProducer.cc:            ctfHitsIt++, ctfHitsCounter++ )
+GsfElectronCoreBaseProducer.cc:        if(!((**ctfHitsIt).isValid())) //count only valid Hits!
+GsfElectronCoreBaseProducer.cc:      uint32_t ctfHit = ctfHitPattern.getHitPattern(HitPattern::TRACK_HITS, ctfHitsCounter);
+GsfElectronCoreBaseProducer.cc:      if(!(HitPattern::pixelHitFilter(ctfHit) ||
+GsfElectronCoreBaseProducer.cc:            HitPattern::stripTIBHitFilter(ctfHit) ||
+GsfElectronCoreBaseProducer.cc:            HitPattern::stripTIDHitFilter(ctfHit)))
+GsfElectronCoreBaseProducer.cc:      numCtfInnerHits++ ;
+GsfElectronCoreBaseProducer.cc:        if( (**elHitsIt).sharesInput(&(**ctfHitsIt),TrackingRecHit::all) )
+GsfElectronCoreBaseProducer.cc:       } //ctfHits iterator
+GsfElectronCoreBaseProducer.cc:     } //gsfHits iterator
+GsfElectronCoreBaseProducer.cc:    if ((numGsfInnerHits==0)||(numCtfInnerHits==0))
+GsfElectronCoreBaseProducer.cc:    if ( static_cast<float>(shared)/std::min(numGsfInnerHits,numCtfInnerHits) > maxFracShared )
+GsfElectronCoreBaseProducer.cc:      maxFracShared = static_cast<float>(shared)/std::min(numGsfInnerHits, numCtfInnerHits);
+GsfElectronCoreBaseProducer.h:    // of shared hits in Pixels and the inner strip tracker with the electron Track
+GsfElectronEcalDrivenProducer.cc:#include "DataFormats/TrackingRecHit/interface/TrackingRecHitFwd.h"
+GsfElectronFull5x5Filler.cc:   _ebRecHitsToken = consumes<EcalRecHitCollection>(cfg.getParameter<edm::InputTag>("barrelRecHitCollectionTag"));
+GsfElectronFull5x5Filler.cc:   _eeRecHitsToken = consumes<EcalRecHitCollection>(cfg.getParameter<edm::InputTag>("endcapRecHitCollectionTag"));
+GsfElectronFull5x5Filler.cc:   event.getByToken(_ebRecHitsToken,_ebRecHits);
+GsfElectronFull5x5Filler.cc:   event.getByToken(_eeRecHitsToken,_eeRecHits);
+GsfElectronFull5x5Filler.cc:  DetId seedXtalId = seedCluster.hitsAndFractions()[0].first ;
+GsfElectronFull5x5Filler.cc:  const EcalRecHitCollection * recHits = 0 ;
+GsfElectronFull5x5Filler.cc:    recHits = _ebRecHits.product() ;
+GsfElectronFull5x5Filler.cc:    recHits = _eeRecHits.product() ;
+GsfElectronFull5x5Filler.cc:  std::vector<float> covariances = noZS::EcalClusterTools::covariances(seedCluster,recHits,_topology,_geometry) ;
+GsfElectronFull5x5Filler.cc:  std::vector<float> localCovariances = noZS::EcalClusterTools::localCovariances(seedCluster,recHits,_topology) ;
+GsfElectronFull5x5Filler.cc:  showerShape.e1x5 = noZS::EcalClusterTools::e1x5(seedCluster,recHits,_topology)  ;
+GsfElectronFull5x5Filler.cc:  showerShape.e2x5Max = noZS::EcalClusterTools::e2x5Max(seedCluster,recHits,_topology)  ;
+GsfElectronFull5x5Filler.cc:  showerShape.e5x5 = noZS::EcalClusterTools::e5x5(seedCluster,recHits,_topology) ;
+GsfElectronFull5x5Filler.cc:  showerShape.r9 = noZS::EcalClusterTools::e3x3(seedCluster,recHits,_topology)/theClus->rawEnergy() ;
+GsfElectronFull5x5Filler.h:    edm::EDGetTokenT<EcalRecHitCollection> _ebRecHitsToken, _eeRecHitsToken;
+GsfElectronFull5x5Filler.h:    edm::Handle<EcalRecHitCollection> _ebRecHits;
+GsfElectronFull5x5Filler.h:    edm::Handle<EcalRecHitCollection> _eeRecHits;
+GsfElectronProducer.cc:#include "DataFormats/EcalRecHit/interface/EcalSeverityLevel.h"
+GsfElectronProducer.cc:#include "DataFormats/TrackingRecHit/interface/TrackingRecHitFwd.h"
+SiStripElectronAssociator.cc:#include "DataFormats/TrackingRecHit/interface/TrackingRecHit.h"
+SiStripElectronAssociator.cc:#include "DataFormats/TrackerRecHit2D/interface/SiStripRecHit2DCollection.h"
+SiStripElectronAssociator.cc:  // position tolerance for equality of 2 hits set to 10 microns
+SiStripElectronAssociator.cc:   // The reco::Track's hits are a (improper?) subset of the reco::SiStripElectron's
+SiStripElectronAssociator.cc:      // one hit in common, they belong to each other.  (Disjoint sets
+SiStripElectronAssociator.cc:      // of hits are assigned to electrons.)  So let's look at one hit.
+SiStripElectronAssociator.cc:      // But first, make sure the track's hit list is not empty.
+SiStripElectronAssociator.cc:      if (trackPtr->recHitsBegin() == trackPtr->recHitsEnd()) { continue; }
+SiStripElectronAssociator.cc:      // Detector id is not enough to completely specify a hit
+SiStripElectronAssociator.cc:      uint32_t id = (*trackPtr->recHitsBegin())->geographicalId().rawId();
+SiStripElectronAssociator.cc:      LocalPoint pos = (*trackPtr->recHitsBegin())->localPosition();
+SiStripElectronAssociator.cc:      // Find the electron with that hit!
+SiStripElectronAssociator.cc:          bool hitInCommon = false;
+SiStripElectronAssociator.cc:          LogDebug("SiStripElectronAssociator") << " Looping over Mono hits " << "\n" ;
+SiStripElectronAssociator.cc:          for (std::vector<SiStripRecHit2D>::const_iterator hitIter = strippyIter->rphiRecHits().begin();  hitIter != strippyIter->rphiRecHits().end();  ++hitIter) {
+SiStripElectronAssociator.cc:                                                  << " DetId " << hitIter->geographicalId().rawId()
+SiStripElectronAssociator.cc:                                                  << " localPos " << hitIter->localPosition()
+SiStripElectronAssociator.cc:                                                  << " deltasPos " << (hitIter->localPosition() - pos).mag() ;
+SiStripElectronAssociator.cc:            if (hitIter->geographicalId().rawId() == id   &&
+SiStripElectronAssociator.cc:                (hitIter->localPosition() - pos).mag() < positionTol ) {
+SiStripElectronAssociator.cc:              hitInCommon = true;
+SiStripElectronAssociator.cc:              LogDebug("SiStripElectronAssociator") << " hitInCommon True " << "\n" ;
+SiStripElectronAssociator.cc:              LogDebug("SiStripElectronAssociator") << " hitInCommon False " << "\n" ;
+SiStripElectronAssociator.cc:          } // end loop over rphi hits
+SiStripElectronAssociator.cc:          if(!hitInCommon) {
+SiStripElectronAssociator.cc:            LogDebug("SiStripElectronAssociator") << " Looping over Stereo hits " << "\n" ;
+SiStripElectronAssociator.cc:            for (std::vector<SiStripRecHit2D>::const_iterator hitIter = strippyIter->stereoRecHits().begin();  hitIter != strippyIter->stereoRecHits().end();  ++hitIter) {
+SiStripElectronAssociator.cc:                                                     << " DetId " << hitIter->geographicalId().rawId()
+SiStripElectronAssociator.cc:                                                     << " localPos " << hitIter->localPosition()
+SiStripElectronAssociator.cc:                                                     << " deltasPos " << (hitIter->localPosition() - pos).mag() ;
+SiStripElectronAssociator.cc:               if (hitIter->geographicalId().rawId() == id   &&
+SiStripElectronAssociator.cc:                   (hitIter->localPosition() - pos).mag() < positionTol) {
+SiStripElectronAssociator.cc:                 hitInCommon = true;
+SiStripElectronAssociator.cc:                  LogDebug("SiStripElectronAssociator") << " hitInCommon True " << "\n"  ;
+SiStripElectronAssociator.cc:                 LogDebug("SiStripElectronAssociator") << " hitInCommon False " << "\n" ;
+SiStripElectronAssociator.cc:            } // end loop over stereo hits
+SiStripElectronAssociator.cc:          } // end of hitInCommon check for loop over stereo hits
+SiStripElectronAssociator.cc:          if (hitInCommon) {
+SiStripElectronAssociator.cc:             LogDebug("SiStripElectronAssociator") << " Hit in Common Found \n" ;
+SiStripElectronAssociator.cc:             LogDebug("SiStripElectronAssociator") << "Hit in Common NOT found \n"  ;
+SiStripElectronProducer.cc:#include "DataFormats/TrackerRecHit2D/interface/SiStripRecHit2DCollection.h"
+SiStripElectronProducer.cc:#include "DataFormats/TrackerRecHit2D/interface/SiStripMatchedRecHit2DCollection.h"
+SiStripElectronProducer.cc:   siHitProducer_ = iConfig.getParameter<std::string>("siHitProducer");
+SiStripElectronProducer.cc:   siRphiHitCollection_ = iConfig.getParameter<std::string>("siRphiHitCollection");
+SiStripElectronProducer.cc:   siStereoHitCollection_ = iConfig.getParameter<std::string>("siStereoHitCollection");
+SiStripElectronProducer.cc:   siMatchedHitCollection_ = iConfig.getParameter<std::string>("siMatchedHitCollection");
+SiStripElectronProducer.cc:     consumes<SiStripRecHit2DCollection>(edm::InputTag(siHitProducer_,siRphiHitCollection_));
+SiStripElectronProducer.cc:     consumes<SiStripRecHit2DCollection>(edm::InputTag(siHitProducer_,siStereoHitCollection_));
+SiStripElectronProducer.cc:     consumes<SiStripMatchedRecHit2DCollection>(edm::InputTag(siHitProducer_,siMatchedHitCollection_));
+SiStripElectronProducer.cc:      iConfig.getParameter<int32_t>("maxHitsOnDetId"),
+SiStripElectronProducer.cc:      iConfig.getParameter<int32_t>("minHits"),
+SiStripElectronProducer.cc:   edm::Handle<SiStripRecHit2DCollection> rphiHitsHandle;
+SiStripElectronProducer.cc:   iEvent.getByToken(rphi_sistrips2dtag_, rphiHitsHandle);
+SiStripElectronProducer.cc:   edm::Handle<SiStripRecHit2DCollection> stereoHitsHandle;
+SiStripElectronProducer.cc:   iEvent.getByToken(stereo_sistrips2dtag_, stereoHitsHandle);
+SiStripElectronProducer.cc:   edm::Handle<SiStripMatchedRecHit2DCollection> matchedHitsHandle;
+SiStripElectronProducer.cc:   iEvent.getByToken(matched_sistrips2dtag_, matchedHitsHandle);
+SiStripElectronProducer.cc:   algo_p->prepareEvent(trackerHandle, rphiHitsHandle, stereoHitsHandle, matchedHitsHandle, magneticFieldHandle);
+SiStripElectronProducer.h:      std::string siHitProducer_;
+SiStripElectronProducer.h:      std::string siRphiHitCollection_;
+SiStripElectronProducer.h:      std::string siStereoHitCollection_;
+SiStripElectronProducer.h:      std::string siMatchedHitCollection_;
+SiStripElectronProducer.h:      edm::EDGetTokenT<SiStripRecHit2DCollection> rphi_sistrips2dtag_;
+SiStripElectronProducer.h:      edm::EDGetTokenT<SiStripRecHit2DCollection> stereo_sistrips2dtag_;
+SiStripElectronProducer.h:      edm::EDGetTokenT<SiStripMatchedRecHit2DCollection> matched_sistrips2dtag_;
+SiStripElectronSeedProducer.cc:// Producer for making electron seeds from Si Strip hits.
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tibPhiMissHit2Cut",0.006);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tidPhiMissHit2Cut",0.006);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tecPhiMissHit2Cut",0.007);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("monoPhiMissHit2Cut",0.02);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tibZMissHit2Cut",0.35);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tidRMissHit2Cut",0.3);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tecRMissHit2Cut",0.3);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tidMaxHits",4);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("tecMaxHits",2);
+SiStripElectronSeedProducer.cc:    conf_.addParameter("monoMaxHits",4);

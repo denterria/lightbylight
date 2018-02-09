@@ -1,0 +1,25 @@
+EgammaClusterAlgos/src/PFECALSuperClusterAlgo.cc:  double scEtBS = 
+EgammaClusterAlgos/src/PFECALSuperClusterAlgo.cc:  if ( scEtBS > threshSuperClusterEt_ ) {
+EgammaClusterProducers/interface/ReducedESRecHitCollectionProducer.h:  double scEtThresh_;
+EgammaClusterProducers/python/particleFlowSuperClusterECAL_cfi.py:    thresh_SCEt = cms.double(1.0),    
+EgammaClusterProducers/python/particleFlowSuperClusterECAL_cfi.py:    thresh_SCEt = cms.double(1.0),
+EgammaClusterProducers/python/reducedRecHitsSequence_cff.py:                                      scEtThreshold = cms.double(15),
+Binary file EgammaClusterProducers/python/particleFlowSuperClusterECAL_cfi.pyc matches
+Binary file EgammaClusterProducers/python/reducedRecHitsSequence_cff.pyc matches
+EgammaClusterProducers/src/PFECALSuperClusterProducer.cc:  superClusterAlgo_.setThreshSuperClusterEt( iConfig.getParameter<double>("thresh_SCEt") );
+EgammaClusterProducers/src/PFECALSuperClusterProducer.cc:  desc.add<double>("thresh_SCEt",4.0);
+EgammaClusterProducers/src/ReducedESRecHitCollectionProducer.cc: scEtThresh_          = ps.getParameter<double>("scEtThreshold");
+EgammaClusterProducers/src/ReducedESRecHitCollectionProducer.cc:      if (isc->energy() < scEtThresh_) continue;
+EgammaClusterProducers/test/PFSuperClusterTreeMaker.cc:    scEta, scPhi, scR, scPhiWidth, scEtaWidth, scSeedRawEnergy, 
+EgammaClusterProducers/test/PFSuperClusterTreeMaker.cc:  scEta = sc->position().Eta();
+EgammaClusterProducers/test/PFSuperClusterTreeMaker.cc:  scEtaWidth = sc->etaWidth();
+EgammaClusterProducers/test/PFSuperClusterTreeMaker.cc:  _tree->Branch("scEta",&scEta,"scEta/F");
+EgammaClusterProducers/test/PFSuperClusterTreeMaker.cc:  _tree->Branch("scEtaWidth",&scEtaWidth,"scEtaWidth/F");
+EgammaCoreTools/plugins/EcalClusterEnergyCorrectionObjectSpecific.cc:  //std::cout << "rawEnergy=" << superCluster.rawEnergy() << " SCeta=" << superCluster.eta() << std::endl;
+EgammaCoreTools/src/SuperClusterShapeAlgo.cc:  double scEta    = passedCluster.position().eta();
+EgammaCoreTools/src/SuperClusterShapeAlgo.cc:    double dEta = position.eta() - scEta;
+EgammaCoreTools/test/testEcalClusterSeverityAlgo.cc:    float scEta[NMAXOBJ];
+EgammaCoreTools/test/testEcalClusterSeverityAlgo.cc:    chain -> SetBranchAddress("scEta", treeVars.scEta);
+EgammaCoreTools/test/testEcalClusterSeverityAlgo.cc:    chain -> Branch("scEta", treeVars.scEta, "scEta[nSc]/F");
+EgammaCoreTools/test/testEcalClusterSeverityAlgo.cc:	treeVars.scEta[i]=0;
+EgammaCoreTools/test/testEcalClusterSeverityAlgo.cc:	    myTreeVariables_.scEta[problematicSC]=(*it).eta();

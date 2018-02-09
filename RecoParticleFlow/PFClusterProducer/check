@@ -1,0 +1,314 @@
+doc/PFClusterProducer.doc:<a href=http://cmsdoc.cern.ch/swdev/viewcvs/viewcvs.cgi/CMSSW/RecoParticleFlow/PFClusterProducer/.admin/developers?rev=HEAD&cvsroot=CMSSW&content-type=text/vnd.viewcvs-markup>Administrative privileges</a>
+interface/PFCPositionCalculatorBase.h:    _minFractionInCalc(conf.getParameter<double>("minFractionInCalc")),
+interface/PFCPositionCalculatorBase.h:  const float _minFractionInCalc;
+interface/PFClusterBuilderBase.h:    _minFractionToKeep(conf.getParameter<double>("minFractionToKeep")),
+interface/PFClusterBuilderBase.h:  const float _minFractionToKeep; // min fraction value to keep in clusters
+interface/PFHBHERecHitCreatorMaxSample.h:	auto best_hit = std::min_element(hitTimes.begin(),hitTimes.end(),
+interface/PFHBHERecHitCreatorMaxSample.h:    const double sampleCut_ = 0.6; // minimalistic threshold just to reduce the iterations 
+interface/PFRecHitQTests.h://  Quality test that applies threshold and timing as a function of depth 
+interface/PFRecHitQTests.h:	minTimes_.push_back(psets[i].getParameter<double>("minTime"));
+interface/PFRecHitQTests.h:    std::vector<double> minTimes_;
+interface/PFRecHitQTests.h:	  if ((time <minTimes_[i] || time >maxTimes_[i] ) &&  energy>thresholds_[i])
+interface/PFRecHitQTests.h:      timingCleaning_      = iConfig.getParameter<bool>("timingCleaning");
+interface/PFRecHitQTests.h:      if (  timingCleaning_ && rh.energy() > thresholdCleaning_ && 
+interface/PFRecHitQTests.h:  bool timingCleaning_;
+plugins/CorrectedECALPFClusterProducer.cc:    _minimumPSEnergy(conf.getParameter<double>("minimumPSEnergy")) {
+plugins/CorrectedECALPFClusterProducer.cc:  const double _minimumPSEnergy;
+plugins/CorrectedECALPFClusterProducer.cc:  double dist = -1.0, min_dist = -1.0;
+plugins/CorrectedECALPFClusterProducer.cc:    if( psclus->energy() < _minimumPSEnergy ) continue;
+plugins/CorrectedECALPFClusterProducer.cc:    dist = min_dist = -1.0; // reset
+plugins/CorrectedECALPFClusterProducer.cc:      if( dist == -1.0 || (min_dist != -1.0 && dist > min_dist) ) continue;
+plugins/CorrectedECALPFClusterProducer.cc:      if( dist < min_dist || min_dist == -1.0 ) {
+plugins/CorrectedECALPFClusterProducer.cc:	min_dist = dist;
+plugins/CorrectedECALPFClusterProducer.cc:  desc.add<double>("minimumPSEnergy",0.0);
+plugins/PFCTRecHitProducer.cc:  minShortTiming_Cut = iConfig.getParameter<double>("MinShortTiming_Cut");
+plugins/PFCTRecHitProducer.cc:  maxShortTiming_Cut = iConfig.getParameter<double>("MaxShortTiming_Cut");
+plugins/PFCTRecHitProducer.cc:  minLongTiming_Cut = iConfig.getParameter<double>("MinLongTiming_Cut");
+plugins/PFCTRecHitProducer.cc:  maxLongTiming_Cut = iConfig.getParameter<double>("MaxLongTiming_Cut");
+plugins/PFCTRecHitProducer.cc:  // Get Hcal Severity Level Computer, so that the severity of each rechit flag/status may be determined
+plugins/PFCTRecHitProducer.cc:		// Then check the timing in short and long fibres in all other towers.
+plugins/PFCTRecHitProducer.cc:		     ( theShortHit->time() < minShortTiming_Cut ||
+plugins/PFCTRecHitProducer.cc:		       theShortHit->time() > maxShortTiming_Cut || 
+plugins/PFCTRecHitProducer.cc:		     ( theLongHit->time() < minLongTiming_Cut ||
+plugins/PFCTRecHitProducer.cc:		       theLongHit->time() > maxLongTiming_Cut  || 
+plugins/PFCTRecHitProducer.cc:		// Check the timing of the long and short fibre rechits
+plugins/PFCTRecHitProducer.cc:		// First, check the timing of long and short fibre in eta = 29 if tower 30.
+plugins/PFCTRecHitProducer.cc:		       ( theLongHit29->time() < minLongTiming_Cut ||
+plugins/PFCTRecHitProducer.cc:		         theLongHit29->time() > maxLongTiming_Cut ||
+plugins/PFCTRecHitProducer.cc:		       ( theShortHit29->time() < minShortTiming_Cut ||
+plugins/PFCTRecHitProducer.cc:		         theShortHit29->time() > maxShortTiming_Cut ||
+plugins/PFCTRecHitProducer.cc:		// Determine EM and HAD after cleaning of short and long fibres
+plugins/PFCTRecHitProducer.cc:PFCTRecHitProducer::beginLuminosityBlock(const edm::LuminosityBlock& lumi,
+plugins/PFCTRecHitProducer.h:  virtual void beginLuminosityBlock(const edm::LuminosityBlock& lumi, 
+plugins/PFCTRecHitProducer.h:  // Don't allow too large timing excursion if energy in long/short fibres is large enough
+plugins/PFCTRecHitProducer.h:  double minShortTiming_Cut;
+plugins/PFCTRecHitProducer.h:  double maxShortTiming_Cut;
+plugins/PFCTRecHitProducer.h:  double minLongTiming_Cut;
+plugins/PFCTRecHitProducer.h:  double maxLongTiming_Cut;
+plugins/PFClusterProducer.cc:void PFClusterProducer::beginLuminosityBlock(const edm::LuminosityBlock& lumi, 
+plugins/PFClusterProducer.h:  virtual void beginLuminosityBlock(const edm::LuminosityBlock&, 
+plugins/PFClusterTimeSelector.cc:    info.minE    = cut.getParameter<double>("minEnergy");
+plugins/PFClusterTimeSelector.cc:    info.minTime = cut.getParameter<double>("minTime");
+plugins/PFClusterTimeSelector.cc:      if (energy<info.minE || energy>info.maxE)
+plugins/PFClusterTimeSelector.cc:      if (time>info.minTime && time<info.maxTime)
+plugins/PFClusterTimeSelector.h:    double minE;
+plugins/PFClusterTimeSelector.h:    double minTime;
+plugins/PFMultiDepthClusterProducer.cc:void PFMultiDepthClusterProducer::beginLuminosityBlock(const edm::LuminosityBlock& lumi, 
+plugins/PFMultiDepthClusterProducer.h:  virtual void beginLuminosityBlock(const edm::LuminosityBlock&, 
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-12.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-31.5),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-6.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-20.5),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-4.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-12.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-4.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(20.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-4.),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minEnergy = cms.double(20.0),
+python/particleFlowClusterECALTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterECALUncorrected_cfi.py:              minS4S1_a = cms.double(0.04), #constant term
+python/particleFlowClusterECALUncorrected_cfi.py:              minS4S1_b = cms.double(-0.024), #log pt scaling
+python/particleFlowClusterECALUncorrected_cfi.py:              minS4S1_a = cms.double(0.02), #constant term
+python/particleFlowClusterECALUncorrected_cfi.py:              minS4S1_b = cms.double(-0.0125), #log pt scaling
+python/particleFlowClusterECALUncorrected_cfi.py:    minFractionInCalc = cms.double(1e-9),
+python/particleFlowClusterECALUncorrected_cfi.py:    logWeightDenominator = cms.double(0.08), # same as gathering threshold
+python/particleFlowClusterECALUncorrected_cfi.py:    minAllowedNormalization = cms.double(1e-9),
+python/particleFlowClusterECALUncorrected_cfi.py:    minFractionInCalc = cms.double(0.0),
+python/particleFlowClusterECALUncorrected_cfi.py:    minAllowedNormalization = cms.double(0.0),
+python/particleFlowClusterECALUncorrected_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterECALUncorrected_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterECAL_cfi.py:    minimumPSEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(2.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(2.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(2.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(-5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(0.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(0.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(0.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(0.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(5.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(0.),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.py:            minTime = cms.double(0.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(0.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-30.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(1.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(2.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-20.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(2.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-15.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-15.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(2.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-15.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(2.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-15.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(5.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-5),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-5),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(5.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-5),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-5),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(5.),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-5),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minEnergy = cms.double(5.0),
+python/particleFlowClusterHBHETimeSelected_cfi.py:            minTime = cms.double(-5),
+python/particleFlowClusterHBHE_cfi.py:           minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHBHE_cfi.py:                 minFractionInCalc = cms.double(1e-9),    
+python/particleFlowClusterHBHE_cfi.py:                 logWeightDenominator = cms.double(0.8),#same as gathering threshold
+python/particleFlowClusterHBHE_cfi.py:                 minAllowedNormalization = cms.double(1e-9)
+python/particleFlowClusterHBHE_cfi.py:                 minFractionInCalc = cms.double(1e-9),    
+python/particleFlowClusterHBHE_cfi.py:                 logWeightDenominator = cms.double(0.8),#same as gathering threshold
+python/particleFlowClusterHBHE_cfi.py:                 minAllowedNormalization = cms.double(1e-9)
+python/particleFlowClusterHBHE_cfi.py:           minChi2Prob = cms.double(0.),
+python/particleFlowClusterHBHE_cfi.py:           minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterHCALLegacy_cfi.py:    minFractionInCalc = cms.double(1e-9),    
+python/particleFlowClusterHCALLegacy_cfi.py:    logWeightDenominator = cms.double(0.8),#same as gathering threshold
+python/particleFlowClusterHCALLegacy_cfi.py:    minAllowedNormalization = cms.double(1e-9)
+python/particleFlowClusterHCALLegacy_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHCALLegacy_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterHCAL_cfi.py:           minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHCAL_cfi.py:               minFractionInCalc = cms.double(1e-9),    
+python/particleFlowClusterHCAL_cfi.py:               logWeightDenominator = cms.double(0.8),#same as gathering threshold
+python/particleFlowClusterHCAL_cfi.py:               minAllowedNormalization = cms.double(1e-9)
+python/particleFlowClusterHFEM_cfi.py:                 minS4S1_a = cms.double(0.11), #constant term
+python/particleFlowClusterHFEM_cfi.py:                 minS4S1_b = cms.double(-0.19), #log pt scaling
+python/particleFlowClusterHFEM_cfi.py:    minFractionInCalc = cms.double(1e-9),
+python/particleFlowClusterHFEM_cfi.py:    logWeightDenominator = cms.double(0.8), # same as gathering threshold
+python/particleFlowClusterHFEM_cfi.py:    minAllowedNormalization = cms.double(1e-9)    
+python/particleFlowClusterHFEM_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHFEM_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterHFHAD_cfi.py:              minS4S1_a = cms.double(0.045), #constant term
+python/particleFlowClusterHFHAD_cfi.py:              minS4S1_b = cms.double(-0.080), #log pt scaling
+python/particleFlowClusterHFHAD_cfi.py:    minFractionInCalc = cms.double(1e-9),
+python/particleFlowClusterHFHAD_cfi.py:    logWeightDenominator = cms.double(0.8), # same as gathering threshold
+python/particleFlowClusterHFHAD_cfi.py:    minAllowedNormalization = cms.double(1e-9)
+python/particleFlowClusterHFHAD_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHFHAD_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterHF_cfi.py:                 minS4S1_a = cms.double(0.11), #constant term
+python/particleFlowClusterHF_cfi.py:                 minS4S1_b = cms.double(-0.19), #log pt scaling
+python/particleFlowClusterHF_cfi.py:                 minS4S1_a = cms.double(0.045), #constant term
+python/particleFlowClusterHF_cfi.py:                 minS4S1_b = cms.double(-0.080), #log pt scaling
+python/particleFlowClusterHF_cfi.py:    minFractionInCalc = cms.double(1e-9),
+python/particleFlowClusterHF_cfi.py:    logWeightDenominator = cms.double(0.8), # same as gathering threshold
+python/particleFlowClusterHF_cfi.py:    minAllowedNormalization = cms.double(1e-9)    
+python/particleFlowClusterHF_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHF_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterHO_cfi.py:    minFractionInCalc = cms.double(1e-9),
+python/particleFlowClusterHO_cfi.py:    logWeightDenominator = cms.double(0.5), # same as gathering threshold
+python/particleFlowClusterHO_cfi.py:    minAllowedNormalization = cms.double(1e-9)    
+python/particleFlowClusterHO_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterHO_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowClusterHO_cfi.py:    object.pfClusterBuilder.positionCalc.logWeightDenominator = cms.double(0.05)
+python/particleFlowClusterHO_cfi.py:    object.pfClusterBuilder.allCellsPositionCalc.logWeightDenominator = cms.double(0.05)
+python/particleFlowClusterPS_cfi.py:    minFractionInCalc = cms.double(1e-9),
+python/particleFlowClusterPS_cfi.py:    logWeightDenominator = cms.double(6e-5), # same as gathering threshold
+python/particleFlowClusterPS_cfi.py:    minAllowedNormalization = cms.double(1e-9)
+python/particleFlowClusterPS_cfi.py:    minFractionToKeep = cms.double(1e-7),
+python/particleFlowClusterPS_cfi.py:    minFracTot = cms.double(1e-20), ## numerical stabilization
+python/particleFlowRecHitECAL_cfi.py:                  timingCleaning = cms.bool(True),
+python/particleFlowRecHitECAL_cfi.py:                 timingCleaning = cms.bool(True),
+python/particleFlowRecHitHCAL_cfi.py:# Cut on timing if sufficient energy (in both long and short fibres)
+python/particleFlowRecHitHCAL_cfi.py:    #MinLongTiming_Cut = cms.double(-11.),
+python/particleFlowRecHitHCAL_cfi.py:    #MaxLongTiming_Cut = cms.double(+8.),
+python/particleFlowRecHitHCAL_cfi.py:    #MinShortTiming_Cut = cms.double(-10.),
+python/particleFlowRecHitHCAL_cfi.py:    #MaxShortTiming_Cut = cms.double(+8.),
+python/particleFlowRecHitHCAL_cfi.py:    MinLongTiming_Cut = cms.double(-5.),
+python/particleFlowRecHitHCAL_cfi.py:    MaxLongTiming_Cut = cms.double(+5.),
+python/particleFlowRecHitHCAL_cfi.py:    MinShortTiming_Cut = cms.double(-5.),
+python/particleFlowRecHitHCAL_cfi.py:    MaxShortTiming_Cut = cms.double(+5.),
+python/towerMakerPF_cfi.py:towerMakerPF.HOThresholdMinus1 = 0.8
+python/towerMakerPF_cfi.py:towerMakerPF.HOThresholdMinus2 = 0.8
+Binary file python/particleFlowClusterECALTimeSelected_cfi.pyc matches
+Binary file python/particleFlowClusterECALUncorrected_cfi.pyc matches
+Binary file python/particleFlowClusterECAL_cfi.pyc matches
+Binary file python/particleFlowClusterHBHEMaxSampleTimeSelected_cfi.pyc matches
+Binary file python/particleFlowClusterHBHETimeSelected_cfi.pyc matches
+Binary file python/particleFlowClusterHBHE_cfi.pyc matches
+Binary file python/particleFlowClusterHCALLegacy_cfi.pyc matches
+Binary file python/particleFlowClusterHCAL_cfi.pyc matches
+Binary file python/particleFlowClusterHFEM_cfi.pyc matches
+Binary file python/particleFlowClusterHFHAD_cfi.pyc matches
+Binary file python/particleFlowClusterHF_cfi.pyc matches
+Binary file python/particleFlowClusterHO_cfi.pyc matches
+Binary file python/particleFlowClusterPS_cfi.pyc matches
+Binary file python/particleFlowRecHitECAL_cfi.pyc matches
+Binary file python/particleFlowRecHitHCAL_cfi.pyc matches
+Binary file python/towerMakerPF_cfi.pyc matches
+src/Basic2DGenericPFlowClusterizer.cc:    _minFracTot(conf.getParameter<double>("minFracTot")),
+src/Basic2DGenericPFlowClusterizer.cc:      <<"reached " << _maxIterations << " iterations, terminated position "
+src/Basic2DGenericPFlowClusterizer.cc:      if( fractot > _minFracTot || 
+src/Basic2DGenericPFlowClusterizer.cc:			{return rhf.fraction() > _minFractionToKeep;} 
+src/Basic2DGenericPFlowClusterizer.h:  const double _minFracTot;
+src/Basic2DGenericPFlowPositionCalc.cc:  //Michalis : Even if we dont use timing in clustering here we should fill
+src/Basic2DGenericPFlowPositionCalc.cc:  //the time information for the cluster. This should use the timing resolution(1/E)
+src/Basic2DGenericPFlowPositionCalc.cc:    const double norm = ( rhf.fraction() < _minFractionInCalc ? 
+src/Basic2DGenericPFlowPositionCalc.cc:  if( position_norm < _minAllowedNorm ) {
+src/Basic2DGenericPFlowPositionCalc.h:    _logWeightDenom(conf.getParameter<double>("logWeightDenominator")),
+src/Basic2DGenericPFlowPositionCalc.h:    _minAllowedNorm(conf.getParameter<double>("minAllowedNormalization"))
+src/Basic2DGenericPFlowPositionCalc.h:  const double _minAllowedNorm;
+src/ECAL2DPositionCalcWithDepthCorr.cc:	   ( !_esPlus || !_esMinus ); ++ic ) {
+src/ECAL2DPositionCalcWithDepthCorr.cc:	_esMinus = _esMinus || ( 0 > z ) ;
+src/ECAL2DPositionCalcWithDepthCorr.cc:    if(ctreta < 0 && _esMinus) clusterT0 = _param_T0_ES;
+src/ECAL2DPositionCalcWithDepthCorr.cc:  if( position_norm < _minAllowedNorm ) {
+src/ECAL2DPositionCalcWithDepthCorr.h:    _minAllowedNorm(conf.getParameter<double>("minAllowedNormalization")),
+src/ECAL2DPositionCalcWithDepthCorr.h:    _esMinus(false) {
+src/ECAL2DPositionCalcWithDepthCorr.h:  const double _minAllowedNorm;
+src/ECAL2DPositionCalcWithDepthCorr.h:  bool _esPlus, _esMinus;
+src/PFClusterEMEnergyCorrector.cc:  //magic numbers for MINUIT-like transformation of BDT output onto limited range
+src/PFClusterEMEnergyCorrector.cc:    int coridx = std::min(size,3)-1;
+src/PFlow2DClusterizerWithTime.cc:    _minFracTot(conf.getParameter<double>("minFracTot")),
+src/PFlow2DClusterizerWithTime.cc:    _minChi2Prob(conf.getParameter<double>("minChi2Prob")),
+src/PFlow2DClusterizerWithTime.cc:      <<"reached " << _maxIterations << " iterations, terminated position "
+src/PFlow2DClusterizerWithTime.cc:      if (_minChi2Prob > 0. && !passChi2Prob(iCluster, d2time, clus_chi2, 
+src/PFlow2DClusterizerWithTime.cc:      if( fractot > _minFracTot || 
+src/PFlow2DClusterizerWithTime.cc:			{return rhf.fraction() > _minFractionToKeep;} 
+src/PFlow2DClusterizerWithTime.cc:    if (TMath::Prob(chi2, nhitsCluster) >= _minChi2Prob) {
+src/PFlow2DClusterizerWithTime.h:  const double _minFracTot;
+src/PFlow2DClusterizerWithTime.h:  const double _minChi2Prob;
+src/SpikeAndDoubleSpikeCleaner.cc:	defi = std::min(std::abs(phi-cPhi[0]),std::abs(phi-cPhi[17]-twopi));
+src/SpikeAndDoubleSpikeCleaner.cc:	    defi = std::min(std::abs(phi-cPhi[i+1]),std::abs(phi-cPhi[i]));
+src/SpikeAndDoubleSpikeCleaner.cc:      deta = std::min(deta,std::abs(eta-etaGap));
+src/SpikeAndDoubleSpikeCleaner.cc:    info._minS4S1_a = pset.getParameter<double>("minS4S1_a");    
+src/SpikeAndDoubleSpikeCleaner.cc:    info._minS4S1_b = pset.getParameter<double>("minS4S1_b");    
+src/SpikeAndDoubleSpikeCleaner.cc:    const double f1Cut = ( clean._minS4S1_a*std::log10(rechit.energy()) + 
+src/SpikeAndDoubleSpikeCleaner.cc:			   clean._minS4S1_b );
+src/SpikeAndDoubleSpikeCleaner.cc:      const double dcrmin = ( rechit.layer() ==  PFLayer::ECAL_BARREL ? 
+src/SpikeAndDoubleSpikeCleaner.cc:			      std::min(dcr.first,dcr.second):
+src/SpikeAndDoubleSpikeCleaner.cc:	  ( (aeta < 2.85 && dcrmin > 1.0) || 
+src/SpikeAndDoubleSpikeCleaner.cc:      //Determine energy surrounding the seed and the most energetic neighbour
+src/SpikeAndDoubleSpikeCleaner.cc:	  const double dcrmin = ( rechit.layer() == PFLayer::ECAL_BARREL ? 
+src/SpikeAndDoubleSpikeCleaner.cc:				  std::min(dcr.first,dcr.second):
+src/SpikeAndDoubleSpikeCleaner.cc:	      ( (aeta < 2.85 && dcrmin > 1.0) || 
+src/SpikeAndDoubleSpikeCleaner.h:    double _minS4S1_a;
+src/SpikeAndDoubleSpikeCleaner.h:    double _minS4S1_b;

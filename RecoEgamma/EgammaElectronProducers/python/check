@@ -1,0 +1,73 @@
+ecalDrivenElectronSeeds_cfi.py:#            ptMin = cms.double(1.5),
+ecalDrivenElectronSeedsParameters_cff.py:    hOverEPtMin = cms.double(0.),
+ecalDrivenElectronSeedsParameters_cff.py:    LowPtThreshold = cms.double(1.0),
+ecalDrivenElectronSeedsParameters_cff.py:    HighPtThreshold = cms.double(35.0),
+Binary file ecalDrivenElectronSeedsParameters_cff.pyc matches
+gedGsfElectronFinalizer_cfi.py:                                       pfSumChargedHadronPt = cms.InputTag('gedElPFIsoValueCharged03'),
+gedGsfElectronFinalizer_cfi.py:                                       pfSumPUPt = cms.InputTag('gedElPFIsoValuePU03')),
+Binary file gedGsfElectronFinalizer_cfi.pyc matches
+gedGsfElectrons_cfi.py:    MaxElePtForOnlyMVA = cms.double(50.0),                                
+gedGsfElectrons_cfi.py:    hOverEPtMin = cms.double(0.),
+gedGsfElectrons_cfi.py:    #maxHOverEDepth1Barrel = cms.double(0.1),
+gedGsfElectrons_cfi.py:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+gedGsfElectrons_cfi.py:    #maxHOverEDepth2 = cms.double(0.1),
+gedGsfElectrons_cfi.py:    hOverEPtMinPflow = cms.double(0.),
+gedGsfElectrons_cfi.py:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+gedGsfElectrons_cfi.py:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+gedGsfElectrons_cfi.py:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+gedGsfElectrons_cfi.py:    intRadiusEndcapTk = cms.double(0.015), 
+gedGsfElectrons_cfi.py:    stripEndcapTk = cms.double(0.015), 
+gedGsfElectrons_cfi.py:    ptMinTk = cms.double(0.7), 
+gedGsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+gedGsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+Binary file gedGsfElectrons_cfi.pyc matches
+gedGsfElectrons_cfi.py.org:    MaxElePtForOnlyMVA = cms.double(50.0),                                
+gedGsfElectrons_cfi.py.org:    hOverEPtMin = cms.double(0.),
+gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1Barrel = cms.double(0.1),
+gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+gedGsfElectrons_cfi.py.org:    #maxHOverEDepth2 = cms.double(0.1),
+gedGsfElectrons_cfi.py.org:    hOverEPtMinPflow = cms.double(0.),
+gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+gedGsfElectrons_cfi.py.org:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+gedGsfElectrons_cfi.py.org:    intRadiusEndcapTk = cms.double(0.015), 
+gedGsfElectrons_cfi.py.org:    stripEndcapTk = cms.double(0.015), 
+gedGsfElectrons_cfi.py.org:    ptMinTk = cms.double(0.7), 
+gedGsfElectrons_cfi.py.org:   # if not from DB. Otherwise, keep empty
+gedGsfElectrons_cfi.py.org:   # if not from DB. Otherwise, keep empty
+Binary file gedGsfElectronSequence_cff.pyc matches
+gsfElectronCkfTrackCandidateMaker_cff.py:    minPt = cms.double(3.0),
+gsfElectronCkfTrackCandidateMaker_cff.py:    minHitsMinPt = cms.int32(-1),
+gsfElectronCkfTrackCandidateMaker_cff.py:    nSigmaMinPt = cms.double(5.0),
+Binary file gsfElectronCkfTrackCandidateMaker_cff.pyc matches
+gsfElectrons_cfi.py:    MaxElePtForOnlyMVA = cms.double(50.0),
+gsfElectrons_cfi.py:    hOverEPtMin = cms.double(0.),
+gsfElectrons_cfi.py:    #maxHOverEDepth1Barrel = cms.double(0.1),
+gsfElectrons_cfi.py:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+gsfElectrons_cfi.py:    #maxHOverEDepth2 = cms.double(0.1),
+gsfElectrons_cfi.py:    hOverEPtMinPflow = cms.double(0.),
+gsfElectrons_cfi.py:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+gsfElectrons_cfi.py:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+gsfElectrons_cfi.py:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+gsfElectrons_cfi.py:    intRadiusEndcapTk = cms.double(0.015), 
+gsfElectrons_cfi.py:    stripEndcapTk = cms.double(0.015), 
+gsfElectrons_cfi.py:    ptMinTk = cms.double(0.7), 
+gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+gsfElectrons_cfi.py:    hOverEPtMin = cms.double(0.),
+gsfElectrons_cfi.py:    #maxHOverEDepth1Barrel = cms.double(0.1),
+gsfElectrons_cfi.py:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+gsfElectrons_cfi.py:    #maxHOverEDepth2 = cms.double(0.1),
+gsfElectrons_cfi.py:    hOverEPtMinPflow = cms.double(0.),
+gsfElectrons_cfi.py:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+gsfElectrons_cfi.py:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+gsfElectrons_cfi.py:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+gsfElectrons_cfi.py:    intRadiusEndcapTk = cms.double(0.015), 
+gsfElectrons_cfi.py:    stripEndcapTk = cms.double(0.015), 
+gsfElectrons_cfi.py:    ptMinTk = cms.double(0.7), 
+gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+gsfElectrons_cfi.py:           pfSumChargedHadronPt = cms.InputTag('elPFIsoValueCharged04'),
+gsfElectrons_cfi.py:           edSumChargedHadronPt = cms.InputTag('elEDIsoValueCharged04'),
+Binary file gsfElectrons_cfi.pyc matches
+Binary file valueMapTest_cfi.pyc matches

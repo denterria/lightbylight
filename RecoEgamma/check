@@ -1,0 +1,83 @@
+EgammaElectronAlgos/interface/GsfElectronAlgo.h:      double minSCEtBarrel ;
+EgammaElectronAlgos/interface/GsfElectronAlgo.h:      double minSCEtEndcaps ;
+EgammaElectronAlgos/src/GsfElectronAlgo.cc:  if (ele->isEB() && (etValue < cfg->minSCEtBarrel)) return ;
+EgammaElectronAlgos/src/GsfElectronAlgo.cc:  if (ele->isEE() && (etValue < cfg->minSCEtEndcaps)) return ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc://  desc.add<double>("minSCEtBarrel",4.0) ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc://  desc.add<double>("minSCEtEndcaps",4.0) ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc://  desc.add<double>("minSCEtBarrelPflow",0.0) ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc://  desc.add<double>("minSCEtEndcapsPflow",0.0) ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc:  cutsCfg_.minSCEtBarrel = cfg.getParameter<double>("minSCEtBarrel") ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc:  cutsCfg_.minSCEtEndcaps = cfg.getParameter<double>("minSCEtEndcaps") ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc:  cutsCfgPflow_.minSCEtBarrel = cfg.getParameter<double>("minSCEtBarrelPflow") ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc:  cutsCfgPflow_.minSCEtEndcaps = cfg.getParameter<double>("minSCEtEndcapsPflow") ;
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc:  if (cutsCfg_.minSCEtBarrel<seedConfiguration.getParameter<double>("SCEtCut"))
+EgammaElectronProducers/plugins/GsfElectronBaseProducer.cc:  if (cutsCfg_.minSCEtEndcaps<seedConfiguration.getParameter<double>("SCEtCut"))
+EgammaElectronProducers/plugins/GsfElectronEcalDrivenProducer.cc:  desc.add<double>("minSCEtBarrel",4.0) ;
+EgammaElectronProducers/plugins/GsfElectronEcalDrivenProducer.cc:  desc.add<double>("minSCEtEndcaps",4.0) ;
+EgammaElectronProducers/plugins/GsfElectronProducer.cc:  desc.add<double>("minSCEtBarrelPflow",0.0) ;
+EgammaElectronProducers/plugins/GsfElectronProducer.cc:  desc.add<double>("minSCEtEndcapsPflow",0.0) ;
+EgammaElectronProducers/python/gedGsfElectrons_cfi.py:    minSCEtBarrel = cms.double(1.0),
+EgammaElectronProducers/python/gedGsfElectrons_cfi.py:    minSCEtEndcaps = cms.double(1.0),
+EgammaElectronProducers/python/gedGsfElectrons_cfi.py:    minSCEtBarrelPflow = cms.double(1.0),
+EgammaElectronProducers/python/gedGsfElectrons_cfi.py:    minSCEtEndcapsPflow = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtBarrel = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtEndcaps = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtBarrelPflow = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtEndcapsPflow = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtBarrel = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtEndcaps = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtBarrelPflow = cms.double(1.0),
+EgammaElectronProducers/python/gsfElectrons_cfi.py:    minSCEtEndcapsPflow = cms.double(1.0),
+Binary file EgammaElectronProducers/python/gedGsfElectrons_cfi.pyc matches
+Binary file EgammaElectronProducers/python/gsfElectrons_cfi.pyc matches
+EgammaIsolationAlgos/plugins/EgammaIsoESDetIdCollectionProducer.cc:  minSCEt_ = iConfig.getParameter<double>("minSCEt");
+EgammaIsolationAlgos/plugins/EgammaIsoESDetIdCollectionProducer.cc:      if(scEt > minSCEt_) addDetIds(sc,*ecalPFClusters,*eeClusToESMap,indexToStore);
+EgammaIsolationAlgos/plugins/EgammaIsoESDetIdCollectionProducer.h:  float minSCEt_;
+EgammaIsolationAlgos/plugins/EgammaIsoHcalDetIdCollectionProducer.cc:  minSCEt_ = iConfig.getParameter<double>("minSCEt");
+EgammaIsolationAlgos/plugins/EgammaIsoHcalDetIdCollectionProducer.cc:      if(scEt > minSCEt_) addDetIds(sc,*recHits,indexToStore);
+EgammaIsolationAlgos/plugins/EgammaIsoHcalDetIdCollectionProducer.h:  float minSCEt_;
+EgammaIsolationAlgos/python/interestingEgammaIsoDetIdsSequence_cff.py:interestingGedEgammaIsoHCALDetId.minSCEt=cms.double(1)
+EgammaIsolationAlgos/python/interestingEgammaIsoDetIdsSequence_cff.py:interestingGedEgammaIsoESDetId.minSCEt=cms.double(1)
+EgammaIsolationAlgos/python/interestingEgammaIsoHCALDetIdModule_cff.py:                                               minSCEt=cms.double(20),
+Binary file EgammaIsolationAlgos/python/interestingEgammaIsoDetIdsSequence_cff.pyc matches
+Binary file EgammaIsolationAlgos/python/interestingEgammaIsoESDetIdModule_cff.pyc matches
+Binary file EgammaIsolationAlgos/python/interestingEgammaIsoHCALDetIdModule_cff.pyc matches
+EgammaIsolationAlgos/python/interestingEgammaIsoESDetIdModule_cff.py:                                             minSCEt=cms.double(1),
+EgammaPhotonProducers/interface/ConversionProducer.h:      double minSCEt_;
+EgammaPhotonProducers/interface/ConversionTrackCandidateProducer.h:  double minSCEt_;
+EgammaPhotonProducers/interface/ConvertedPhotonProducer.h:  double minSCEt_;
+EgammaPhotonProducers/interface/GEDPhotonCoreProducer.h:  double minSCEt_;
+EgammaPhotonProducers/interface/GEDPhotonProducer.h:  double minSCEt_;
+EgammaPhotonProducers/interface/PhotonCoreProducer.h:  double minSCEt_;
+EgammaPhotonProducers/interface/PhotonProducer.h:  double minSCEt_;
+EgammaPhotonProducers/python/allConversions_cfi.py:    minSCEt = cms.double(1.0),
+EgammaPhotonProducers/python/conversionTrackCandidates_cfi.py:    minSCEt = cms.double(1.0),
+EgammaPhotonProducers/python/conversions_cfi.py:    minSCEt = cms.double(1.0),
+EgammaPhotonProducers/python/cosmicPhotonSequence_cff.py:photonCore.minSCEt = cms.double(1.0)
+EgammaPhotonProducers/python/cosmicPhotonSequence_cff.py:photons.minSCEtBarrel = cms.double(1.0)
+EgammaPhotonProducers/python/cosmicPhotonSequence_cff.py:photons.minSCEtEndcap = cms.double(1.0)
+EgammaPhotonProducers/python/photons_cfi.py:    minSCEtBarrel = cms.double(1.0),
+EgammaPhotonProducers/python/photons_cfi.py:    minSCEtEndcap = cms.double(1.0),                     
+EgammaPhotonProducers/python/gedPhotons_cfi.py:    minSCEtBarrel = cms.double(1.0),
+EgammaPhotonProducers/python/gedPhotons_cfi.py:    minSCEtEndcap = cms.double(1.0),                     
+EgammaPhotonProducers/python/photonCore_cfi.py:    minSCEt = cms.double(1.0),
+Binary file EgammaPhotonProducers/python/allConversions_cfi.pyc matches
+Binary file EgammaPhotonProducers/python/conversionTrackCandidates_cfi.pyc matches
+Binary file EgammaPhotonProducers/python/photons_cfi.pyc matches
+Binary file EgammaPhotonProducers/python/conversions_cfi.pyc matches
+Binary file EgammaPhotonProducers/python/cosmicPhotonSequence_cff.pyc matches
+Binary file EgammaPhotonProducers/python/gedPhotons_cfi.pyc matches
+Binary file EgammaPhotonProducers/python/photonCore_cfi.pyc matches
+EgammaPhotonProducers/src/ConversionProducer.cc:  minSCEt_                = iConfig.getParameter<double>("minSCEt");//super cluster energy threshold
+EgammaPhotonProducers/src/ConversionProducer.cc:	if (scHandle->ptrAt(ii)->energy()>minSCEt_)
+EgammaPhotonProducers/src/ConversionTrackCandidateProducer.cc:  minSCEt_           = config.getParameter<double>("minSCEt");
+EgammaPhotonProducers/src/ConversionTrackCandidateProducer.cc:    if (aClus->energy()/cosh(aClus->eta()) <= minSCEt_) continue;
+EgammaPhotonProducers/src/ConvertedPhotonProducer.cc:  minSCEt_        = conf_.getParameter<double>("minSCEt");
+EgammaPhotonProducers/src/ConvertedPhotonProducer.cc:    if (aClus->energy()/cosh(aClus->eta()) <= minSCEt_) continue;
+EgammaPhotonProducers/src/ConvertedPhotonProducer.cc:    if (aClus->energy()/cosh(aClus->eta()) <= minSCEt_) continue;
+EgammaPhotonProducers/src/GEDPhotonProducer.cc:  preselCutValuesBarrel_.push_back(conf_.getParameter<double>("minSCEtBarrel")); 
+EgammaPhotonProducers/src/GEDPhotonProducer.cc:  preselCutValuesEndcap_.push_back(conf_.getParameter<double>("minSCEtEndcap")); 
+EgammaPhotonProducers/src/PhotonCoreProducer.cc:  minSCEt_        = conf_.getParameter<double>("minSCEt");
+EgammaPhotonProducers/src/PhotonCoreProducer.cc:    if (scRef->energy()/cosh(scRef->eta()) <= minSCEt_) continue;
+EgammaPhotonProducers/src/PhotonProducer.cc:  preselCutValuesBarrel_.push_back(conf_.getParameter<double>("minSCEtBarrel")); 
+EgammaPhotonProducers/src/PhotonProducer.cc:  preselCutValuesEndcap_.push_back(conf_.getParameter<double>("minSCEtEndcap")); 

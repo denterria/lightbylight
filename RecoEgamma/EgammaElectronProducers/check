@@ -1,0 +1,296 @@
+plugins/ElectronSeedProducer.cc: Description: EDProducer of ElectronSeed objects
+plugins/ElectronSeedProducer.cc:	 hcalCfg.hOverEPtMin = conf_.getParameter<double>("hOverEPtMin") ;
+plugins/ElectronSeedProducer.cc:  std::auto_ptr<ElectronSeedCollection> pSeeds(seeds) ;
+plugins/ElectronSeedProducer.cc:         had1 = hcalHelper_->hcalESumDepth1(scl);
+plugins/ElectronSeedProducer.cc:         had2 = hcalHelper_->hcalESumDepth2(scl);
+plugins/ElectronSeedProducer.cc:ElectronSeedProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+plugins/ElectronSeedProducer.cc:  edm::ParameterSetDescription desc;
+plugins/ElectronSeedProducer.cc:    edm::ParameterSetDescription psd0, psd1, psd2, psd3;
+plugins/ElectronSeedProducer.cc:    psd0.add<edm::ParameterSetDescription>("OrderedHitsFactoryPSet", psd1);
+plugins/ElectronSeedProducer.cc:    //psd2.add<double>("ptMin", 1.5 );
+plugins/ElectronSeedProducer.cc:    psd2.add<double>("ptMin", 1.0 );
+plugins/ElectronSeedProducer.cc:    psd0.add<edm::ParameterSetDescription>("RegionPSet", psd2);
+plugins/ElectronSeedProducer.cc:    psd0.add<double>("hOverEPtMin",0.0);
+plugins/ElectronSeedProducer.cc:    psd0.add<double>("HighPtThreshold",35.0);
+plugins/ElectronSeedProducer.cc:    //psd0.add<double>("LowPtThreshold",5.0);
+plugins/ElectronSeedProducer.cc:    psd0.add<double>("LowPtThreshold",1.0);
+plugins/ElectronSeedProducer.cc:    psd3.add<double>("MinOneOverPtError",1.0);
+plugins/ElectronSeedProducer.cc:    psd0.add<edm::ParameterSetDescription>("SeedCreatorPSet",psd3);
+plugins/ElectronSeedProducer.cc:    desc.add<edm::ParameterSetDescription>("SeedConfiguration",psd0);
+plugins/ElectronSeedProducer.cc:  descriptions.add("ecalDrivenElectronSeeds",desc);
+plugins/ElectronSeedProducer.h:// Description:     Calls ElectronSeedGenerator
+plugins/ElectronSeedProducer.h:  class ConfigurationDescriptions ;
+plugins/ElectronSeedProducer.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/ElectronSeedProducer.h:    static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
+plugins/ElectronSeedProducer.h:    std::unique_ptr<SeedFilter> seedFilter_;
+plugins/GEDGsfElectronCoreProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GEDGsfElectronCoreProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GEDGsfElectronCoreProducer.cc:void GEDGsfElectronCoreProducer::fillDescriptions( edm::ConfigurationDescriptions & descriptions )
+plugins/GEDGsfElectronCoreProducer.cc:  edm::ParameterSetDescription desc ;
+plugins/GEDGsfElectronCoreProducer.cc:  GsfElectronCoreBaseProducer::fillDescription(desc) ;
+plugins/GEDGsfElectronCoreProducer.cc:  descriptions.add("produceEcalDrivenGsfElectronCores",desc) ;
+plugins/GEDGsfElectronCoreProducer.cc:  std::auto_ptr<GsfElectronCoreCollection> electrons(new GsfElectronCoreCollection) ;
+plugins/GEDGsfElectronCoreProducer.h:    static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/GEDGsfElectronFinalizer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GEDGsfElectronFinalizer.cc:   tokenElectronIsoVals_.push_back(consumes<edm::ValueMap<double> >(pfIsoVals.getParameter<edm::InputTag>("pfSumChargedHadronPt")));
+plugins/GEDGsfElectronFinalizer.cc:   tokenElectronIsoVals_.push_back(consumes<edm::ValueMap<double> >(pfIsoVals.getParameter<edm::InputTag>("pfSumPUPt")));
+plugins/GEDGsfElectronFinalizer.cc:   std::auto_ptr<reco::GsfElectronCollection> outputElectrons_p(new reco::GsfElectronCollection);
+plugins/GEDGsfElectronFinalizer.cc:     isoVariables.sumChargedHadronPt = (*(isolationValueMaps)[0])[myElectronRef];
+plugins/GEDGsfElectronFinalizer.cc:     isoVariables.sumPUPt = (*(isolationValueMaps)[3])[myElectronRef];
+plugins/GEDGsfElectronProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GEDGsfElectronProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GEDGsfElectronProducer.cc:  std::auto_ptr<edm::ValueMap<reco::GsfElectronRef> > valMap_p(new edm::ValueMap<reco::GsfElectronRef>);
+plugins/GEDGsfElectronProducer.cc:// an issue here; but it is clearly suboptimal
+plugins/GEDGsfElectronProducer.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/GsfElectronBaseProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronBaseProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronBaseProducer.cc:void GsfElectronBaseProducer::fillDescription( edm::ParameterSetDescription & desc)
+plugins/GsfElectronBaseProducer.cc:  desc.add<double>("MaxElePtForOnlyMVA",50.0) ;
+plugins/GsfElectronBaseProducer.cc://  desc.add<double>("hOverEPtMin",0.) ;
+plugins/GsfElectronBaseProducer.cc://  desc.add<double>("hOverEPtMinPflow",0.) ;
+plugins/GsfElectronBaseProducer.cc:  desc.add<double>("intRadiusEndcapTk",0.015) ;
+plugins/GsfElectronBaseProducer.cc:  desc.add<double>("stripEndcapTk",0.015) ;
+plugins/GsfElectronBaseProducer.cc:  desc.add<double>("ptMinTk",0.7) ;
+plugins/GsfElectronBaseProducer.cc:  edm::ParameterSetDescription descNested ;
+plugins/GsfElectronBaseProducer.cc:  desc.add<edm::ParameterSetDescription>("TransientInitialStateEstimatorParameters",descNested) ;
+plugins/GsfElectronBaseProducer.cc:      throw cms::Exception("GsfElectronBaseProducer|InternalError")
+plugins/GsfElectronBaseProducer.cc:      throw cms::Exception("GsfElectronBaseProducer|InternalError")
+plugins/GsfElectronBaseProducer.cc:  strategyCfg_.MaxElePtForOnlyMVA = cfg.getParameter<double>("MaxElePtForOnlyMVA");  
+plugins/GsfElectronBaseProducer.cc:    hcalCfg_.hOverEPtMin = cfg.getParameter<double>("hOverEPtMin") ;
+plugins/GsfElectronBaseProducer.cc:    hcalCfgPflow_.hOverEPtMin = cfg.getParameter<double>("hOverEPtMinPflow") ;
+plugins/GsfElectronBaseProducer.cc:  isoCfg.intRadiusEndcapTk = cfg.getParameter<double>("intRadiusEndcapTk") ;
+plugins/GsfElectronBaseProducer.cc:  isoCfg.stripEndcapTk = cfg.getParameter<double>("stripEndcapTk") ;
+plugins/GsfElectronBaseProducer.cc:  isoCfg.ptMinTk = cfg.getParameter<double>("ptMinTk") ;
+plugins/GsfElectronBaseProducer.cc:  std::auto_ptr<GsfElectronCollection> finalCollection( new GsfElectronCollection ) ;
+plugins/GsfElectronBaseProducer.h:  class ConfigurationDescriptions ;
+plugins/GsfElectronBaseProducer.h:    static void fillDescription( edm::ParameterSetDescription & ) ;
+plugins/GsfElectronBaseProducer.h:    static std::unique_ptr<gsfAlgoHelpers::HeavyObjectCache> 
+plugins/GsfElectronBaseProducer.h:       return std::unique_ptr<gsfAlgoHelpers::HeavyObjectCache>(new gsfAlgoHelpers::HeavyObjectCache(conf));
+plugins/GsfElectronCoreBaseProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronCoreBaseProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronCoreBaseProducer.cc:void GsfElectronCoreBaseProducer::fillDescription( edm::ParameterSetDescription & desc )
+plugins/GsfElectronCoreBaseProducer.cc:          HitPattern::stripTIBHitFilter(gsfHit) ||
+plugins/GsfElectronCoreBaseProducer.cc:          HitPattern::stripTIDHitFilter(gsfHit)))
+plugins/GsfElectronCoreBaseProducer.cc:            HitPattern::stripTIBHitFilter(ctfHit) ||
+plugins/GsfElectronCoreBaseProducer.cc:            HitPattern::stripTIDHitFilter(ctfHit)))
+plugins/GsfElectronCoreBaseProducer.h:// Description:
+plugins/GsfElectronCoreBaseProducer.h:  class ConfigurationDescriptions ;
+plugins/GsfElectronCoreBaseProducer.h:    static void fillDescription( edm::ParameterSetDescription & ) ;
+plugins/GsfElectronCoreEcalDrivenProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronCoreEcalDrivenProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronCoreEcalDrivenProducer.cc:// void GsfElectronCoreEcalDrivenProducer::fillDescriptions( edm::ConfigurationDescriptions & descriptions )
+plugins/GsfElectronCoreEcalDrivenProducer.cc://   edm::ParameterSetDescription desc ;
+plugins/GsfElectronCoreEcalDrivenProducer.cc://   GsfElectronCoreBaseProducer::fillDescriptions(desc) ;
+plugins/GsfElectronCoreEcalDrivenProducer.cc://   descriptions.add("produceEcalDrivenGsfElectronCores",desc) ;
+plugins/GsfElectronCoreEcalDrivenProducer.cc:  std::auto_ptr<GsfElectronCoreCollection> electrons(new GsfElectronCoreCollection) ;
+plugins/GsfElectronCoreEcalDrivenProducer.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/GsfElectronCoreProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronCoreProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronCoreProducer.cc:// void GsfElectronCoreProducer::fillDescriptions( edm::ConfigurationDescriptions & descriptions )
+plugins/GsfElectronCoreProducer.cc://   edm::ParameterSetDescription desc ;
+plugins/GsfElectronCoreProducer.cc://   GsfElectronCoreBaseProducer::fillDescriptions(desc) ;
+plugins/GsfElectronCoreProducer.cc://   descriptions.add("produceGsfElectronCores",desc) ;
+plugins/GsfElectronCoreProducer.cc://  pfSuperClusterTrackMapTag_ = config.getParameter<edm::InputTag>("pfSuperClusterTrackMap") ;
+plugins/GsfElectronCoreProducer.cc://  event.getByToken(pfSuperClusterTrackMapTag_,pfClusterTracksH_) ;
+plugins/GsfElectronCoreProducer.cc:  std::auto_ptr<GsfElectronCoreCollection> collection(new GsfElectronCoreCollection) ;
+plugins/GsfElectronCoreProducer.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/GsfElectronCoreProducer.h://    edm::InputTag pfSuperClusterTrackMapTag_ ;
+plugins/GsfElectronEcalDrivenProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronEcalDrivenProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronEcalDrivenProducer.cc:/* void GsfElectronEcalDrivenProducer::fillDescriptions( edm::ConfigurationDescriptions & descriptions )
+plugins/GsfElectronEcalDrivenProducer.cc:  edm::ParameterSetDescription desc ;
+plugins/GsfElectronEcalDrivenProducer.cc:  GsfElectronBaseProducer::fillDescription(desc) ;
+plugins/GsfElectronEcalDrivenProducer.cc:  desc.add<double>("hOverEPtMin",0.) ;
+plugins/GsfElectronEcalDrivenProducer.cc:  descriptions.add("produceEcalDrivenGsfElectrons",desc) ;
+plugins/GsfElectronEcalDrivenProducer.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/GsfElectronFull5x5Filler.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronFull5x5Filler.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronFull5x5Filler.cc:       hcalCfg.hOverEPtMin = cfg.getParameter<double>("hOverEPtMin") ;
+plugins/GsfElectronFull5x5Filler.cc:       hcalCfgPflow.hOverEPtMin = cfg.getParameter<double>("hOverEPtMinPflow") ;
+plugins/GsfElectronFull5x5Filler.cc:   std::auto_ptr<reco::GsfElectronCollection> out(new reco::GsfElectronCollection);
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth1OverEcal = _hcalHelperPflow->hcalESumDepth1(*theClus)/theClus->energy() ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth2OverEcal = _hcalHelperPflow->hcalESumDepth2(*theClus)/theClus->energy() ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth1OverEcalBc = _hcalHelperPflow->hcalESumDepth1BehindClusters(showerShape.hcalTowersBehindClusters)/showerShape.e5x5 ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth2OverEcalBc = _hcalHelperPflow->hcalESumDepth2BehindClusters(showerShape.hcalTowersBehindClusters)/showerShape.e5x5 ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth1OverEcal = _hcalHelper->hcalESumDepth1(*theClus)/theClus->energy() ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth2OverEcal = _hcalHelper->hcalESumDepth2(*theClus)/theClus->energy() ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth1OverEcalBc = _hcalHelper->hcalESumDepth1BehindClusters(showerShape.hcalTowersBehindClusters)/showerShape.e5x5 ;
+plugins/GsfElectronFull5x5Filler.cc:    showerShape.hcalDepth2OverEcalBc = _hcalHelper->hcalESumDepth2BehindClusters(showerShape.hcalTowersBehindClusters)/showerShape.e5x5 ;
+plugins/GsfElectronFull5x5Filler.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/GsfElectronFull5x5Filler.h:    std::unique_ptr<ElectronHcalHelper> _hcalHelper, _hcalHelperPflow ;
+plugins/GsfElectronProducer.cc: Description: EDProducer of GsfElectron objects
+plugins/GsfElectronProducer.cc:#include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
+plugins/GsfElectronProducer.cc:#include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
+plugins/GsfElectronProducer.cc:/* void GsfElectronProducer::fillDescriptions( edm::ConfigurationDescriptions & descriptions )
+plugins/GsfElectronProducer.cc:  edm::ParameterSetDescription desc ;
+plugins/GsfElectronProducer.cc:  GsfElectronBaseProducer::fillDescription(desc) ;
+plugins/GsfElectronProducer.cc:  desc.add<double>("hOverEPtMinPflow",0.) ;
+plugins/GsfElectronProducer.cc:  descriptions.add("produceGsfElectrons",desc) ;
+plugins/GsfElectronProducer.cc:    // For ecal seeded electrons, there is a cluster and GsfElectronCoreProducer has kept all electrons,
+plugins/GsfElectronProducer.cc:      throw cms::Exception("GsfElectronAlgo|BadMvaCut")
+plugins/GsfElectronProducer.h:    //static void fillDescriptions( edm::ConfigurationDescriptions & ) ;
+plugins/SiStripElectronAssociator.cc: Description: <one line class summary>
+plugins/SiStripElectronAssociator.cc:#include "FWCore/Utilities/interface/Exception.h"
+plugins/SiStripElectronAssociator.cc:   std::auto_ptr<reco::ElectronCollection> output(new reco::ElectronCollection);
+plugins/SiStripElectronAssociator.cc:      const reco::Track* trackPtr = &(*reco::TrackRef(tracks, i));
+plugins/SiStripElectronAssociator.cc:      // But first, make sure the track's hit list is not empty.
+plugins/SiStripElectronAssociator.cc:      if (trackPtr->recHitsBegin() == trackPtr->recHitsEnd()) { continue; }
+plugins/SiStripElectronAssociator.cc:      uint32_t id = (*trackPtr->recHitsBegin())->geographicalId().rawId();
+plugins/SiStripElectronAssociator.cc:      LocalPoint pos = (*trackPtr->recHitsBegin())->localPosition();
+plugins/SiStripElectronAssociator.cc:             reco::Electron electron((trackPtr->charge() > 0 ? 1 : -1),
+plugins/SiStripElectronAssociator.cc:                                     math::XYZTLorentzVector(trackPtr->px(),
+plugins/SiStripElectronAssociator.cc:                                                             trackPtr->py(),
+plugins/SiStripElectronAssociator.cc:                                                             trackPtr->pz(),
+plugins/SiStripElectronAssociator.cc:                                                             trackPtr->p()),
+plugins/SiStripElectronAssociator.cc:                                     math::XYZPoint(trackPtr->vx(),
+plugins/SiStripElectronAssociator.cc:                                                    trackPtr->vy(),
+plugins/SiStripElectronAssociator.cc:                                                    trackPtr->vz()));
+plugins/SiStripElectronAssociator.cc:        throw cms::Exception("Configuration")
+plugins/check:ElectronSeedProducer.cc:    psd0.add<edm::ParameterSetDescription>("OrderedHitsFactoryPSet", psd1);
+plugins/check:GsfElectronCoreBaseProducer.cc:          HitPattern::stripTIBHitFilter(gsfHit) ||
+plugins/check:GsfElectronCoreBaseProducer.cc:          HitPattern::stripTIDHitFilter(gsfHit)))
+plugins/check:GsfElectronCoreBaseProducer.cc:            HitPattern::stripTIBHitFilter(ctfHit) ||
+plugins/check:GsfElectronCoreBaseProducer.cc:            HitPattern::stripTIDHitFilter(ctfHit)))
+plugins/check:SiStripElectronAssociator.cc:      // But first, make sure the track's hit list is not empty.
+plugins/check:SiStripElectronAssociator.cc:      if (trackPtr->recHitsBegin() == trackPtr->recHitsEnd()) { continue; }
+plugins/check:SiStripElectronAssociator.cc:      uint32_t id = (*trackPtr->recHitsBegin())->geographicalId().rawId();
+plugins/check:SiStripElectronAssociator.cc:      LocalPoint pos = (*trackPtr->recHitsBegin())->localPosition();
+plugins/SiStripElectronAssociator.h: Description: <one line class summary>
+plugins/SiStripElectronProducer.cc://   //An exception safe implementation is
+plugins/SiStripElectronProducer.cc:   std::auto_ptr<reco::SiStripElectronCollection> electronOut(new reco::SiStripElectronCollection);
+plugins/SiStripElectronProducer.cc:   std::auto_ptr<TrackCandidateCollection> trackCandidateOut(new TrackCandidateCollection);
+plugins/SiStripElectronProducer.h: Description: <one line class summary>
+plugins/SiStripElectronSeedProducer.cc:  std::auto_ptr<ElectronSeedCollection> pSeeds;
+plugins/SiStripElectronSeedProducer.cc:  pSeeds = std::auto_ptr<ElectronSeedCollection>(seeds);
+python/ecalDrivenElectronSeedsParameters_cff.py:    hOverEPtMin = cms.double(0.),
+python/ecalDrivenElectronSeedsParameters_cff.py:    LowPtThreshold = cms.double(1.0),
+python/ecalDrivenElectronSeedsParameters_cff.py:    HighPtThreshold = cms.double(35.0),
+python/ecalDrivenElectronSeeds_cfi.py:#            ptMin = cms.double(1.5),
+python/gedGsfElectronFinalizer_cfi.py:                                       pfSumChargedHadronPt = cms.InputTag('gedElPFIsoValueCharged03'),
+python/gedGsfElectronFinalizer_cfi.py:                                       pfSumPUPt = cms.InputTag('gedElPFIsoValuePU03')),
+python/gedGsfElectrons_cfi.py:    MaxElePtForOnlyMVA = cms.double(50.0),                                
+python/gedGsfElectrons_cfi.py:    hOverEPtMin = cms.double(0.),
+python/gedGsfElectrons_cfi.py:    #maxHOverEDepth1Barrel = cms.double(0.1),
+python/gedGsfElectrons_cfi.py:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+python/gedGsfElectrons_cfi.py:    #maxHOverEDepth2 = cms.double(0.1),
+python/gedGsfElectrons_cfi.py:    hOverEPtMinPflow = cms.double(0.),
+python/gedGsfElectrons_cfi.py:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+python/gedGsfElectrons_cfi.py:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+python/gedGsfElectrons_cfi.py:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+python/gedGsfElectrons_cfi.py:    intRadiusEndcapTk = cms.double(0.015), 
+python/gedGsfElectrons_cfi.py:    stripEndcapTk = cms.double(0.015), 
+python/gedGsfElectrons_cfi.py:    ptMinTk = cms.double(0.7), 
+python/gedGsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+python/gedGsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+python/gsfElectronCkfTrackCandidateMaker_cff.py:    minPt = cms.double(3.0),
+python/gsfElectronCkfTrackCandidateMaker_cff.py:    minHitsMinPt = cms.int32(-1),
+python/gsfElectronCkfTrackCandidateMaker_cff.py:    nSigmaMinPt = cms.double(5.0),
+python/gsfElectrons_cfi.py:    MaxElePtForOnlyMVA = cms.double(50.0),
+python/gsfElectrons_cfi.py:    hOverEPtMin = cms.double(0.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1Barrel = cms.double(0.1),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth2 = cms.double(0.1),
+python/gsfElectrons_cfi.py:    hOverEPtMinPflow = cms.double(0.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+python/gsfElectrons_cfi.py:    intRadiusEndcapTk = cms.double(0.015), 
+python/gsfElectrons_cfi.py:    stripEndcapTk = cms.double(0.015), 
+python/gsfElectrons_cfi.py:    ptMinTk = cms.double(0.7), 
+python/gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+python/gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+python/gsfElectrons_cfi.py:    hOverEPtMin = cms.double(0.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1Barrel = cms.double(0.1),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth2 = cms.double(0.1),
+python/gsfElectrons_cfi.py:    hOverEPtMinPflow = cms.double(0.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+python/gsfElectrons_cfi.py:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+python/gsfElectrons_cfi.py:    intRadiusEndcapTk = cms.double(0.015), 
+python/gsfElectrons_cfi.py:    stripEndcapTk = cms.double(0.015), 
+python/gsfElectrons_cfi.py:    ptMinTk = cms.double(0.7), 
+python/gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+python/gsfElectrons_cfi.py:   # if not from DB. Otherwise, keep empty
+python/gsfElectrons_cfi.py:           pfSumChargedHadronPt = cms.InputTag('elPFIsoValueCharged04'),
+python/gsfElectrons_cfi.py:           edSumChargedHadronPt = cms.InputTag('elEDIsoValueCharged04'),
+Binary file python/ecalDrivenElectronSeedsParameters_cff.pyc matches
+Binary file python/gedGsfElectronFinalizer_cfi.pyc matches
+Binary file python/gedGsfElectronSequence_cff.pyc matches
+Binary file python/gedGsfElectrons_cfi.pyc matches
+Binary file python/gsfElectronCkfTrackCandidateMaker_cff.pyc matches
+Binary file python/gsfElectrons_cfi.pyc matches
+Binary file python/valueMapTest_cfi.pyc matches
+python/gedGsfElectrons_cfi.py.org:    MaxElePtForOnlyMVA = cms.double(50.0),                                
+python/gedGsfElectrons_cfi.py.org:    hOverEPtMin = cms.double(0.),
+python/gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1Barrel = cms.double(0.1),
+python/gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1Endcaps = cms.double(0.1),
+python/gedGsfElectrons_cfi.py.org:    #maxHOverEDepth2 = cms.double(0.1),
+python/gedGsfElectrons_cfi.py.org:    hOverEPtMinPflow = cms.double(0.),
+python/gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1BarrelPflow = cms.double(999999999.),
+python/gedGsfElectrons_cfi.py.org:    #maxHOverEDepth1EndcapsPflow = cms.double(999999999.),
+python/gedGsfElectrons_cfi.py.org:    #maxHOverEDepth2Pflow = cms.double(999999999.),
+python/gedGsfElectrons_cfi.py.org:    intRadiusEndcapTk = cms.double(0.015), 
+python/gedGsfElectrons_cfi.py.org:    stripEndcapTk = cms.double(0.015), 
+python/gedGsfElectrons_cfi.py.org:    ptMinTk = cms.double(0.7), 
+python/gedGsfElectrons_cfi.py.org:   # if not from DB. Otherwise, keep empty
+python/gedGsfElectrons_cfi.py.org:   # if not from DB. Otherwise, keep empty
+test/.cvsignore:SingleElectronPt10Raw.py
+test/.cvsignore:QCD_Pt_80_120_Raw.py
+test/GEDValueMapAnalyzer.cc:    throw cms::Exception( "MissingProduct", err.str());
+test/OvalFile:<environment name="Pt10">
+test/OvalFile:  <var name="TEST_RAW_FILE" value="SingleElectronPt10Raw.root">
+test/OvalFile:  <var name="TEST_RECO_FILE" value="SingleElectronPt10.root">
+test/OvalFile:  <executable name="cmsDriver.py" args="SingleElectronPt10.cfi -s GEN,SIM,DIGI,L1,DIGI2RAW,HLT -n 3 --eventcontent FEVTDEBUGHLT --conditions FrontierConditions_GlobalTag,${TEST_GLOBAL_TAG}::All --python_filename=SingleElectronPt10Raw.py --fileout=$TEST_RAW_FILE">
+test/OvalFile:  <var name="TEST_RAW_FILE" value="QCD_Pt_80_120_Raw.root">
+test/OvalFile:  <var name="TEST_RECO_FILE" value="QCD_Pt_80_120.root">
+test/OvalFile:  <executable name="cmsDriver.py" args="QCD_Pt_80_120.cfi -s GEN,SIM,DIGI,L1,DIGI2RAW -n 10 --eventcontent FEVTDEBUGHLT --conditions FrontierConditions_GlobalTag,${TEST_GLOBAL_TAG}::All --python_filename=QCD_Pt_80_120_Raw.py --fileout=$TEST_RAW_FILE">
+test/OvalFile:<environment name="Pt35">
+test/OvalFile:  <var name="TEST_RECO_FILE" value="SingleElectronPt35.root">
+test/OvalFile:  <var name="DBS_SAMPLE" value="RelValSingleElectronPt35">
+test/cmsDriver.py.Pt10.oref:[oval run] TEST_RAW_FILE = SingleElectronPt10Raw.root
+test/cmsDriver.py.Pt10.oref:[oval run] TEST_RECO_FILE = SingleElectronPt10.root
+test/cmsDriver.py.Pt10.oref:[oval run] final instruction: cmsDriver.py SingleElectronPt10.cfi -s GEN:ProductionFilterSequence,SIM,DIGI,L1,DIGI2RAW -n 10 --eventcontent FEVTDEBUGHLT --conditions FrontierConditions_GlobalTag,IDEAL_31X::All --python_filename=SingleElectronPt10Raw.py --fileout=$TEST_RAW_FILE
+test/cmsDriver.py.Qcd.oref:[oval run] TEST_RAW_FILE = QCD_Pt_80_120_Raw.root
+test/cmsDriver.py.Qcd.oref:[oval run] TEST_RECO_FILE = QCD_Pt_80_120.root
+test/cmsDriver.py.Qcd.oref:[oval run] final instruction: cmsDriver.py QCD_Pt_80_120.cfi -s GEN:ProductionFilterSequence,SIM,DIGI,L1,DIGI2RAW -n 10 --eventcontent FEVTDEBUGHLT --conditions FrontierConditions_GlobalTag,IDEAL_31X::All --python_filename=QCD_Pt_80_120_Raw.py --fileout=$TEST_RAW_FILE
+test/cmsDriver.py.Qcd.oref: >>>>>> PDF description: <<<<<<
+test/cmsDriver.py.Qcd.oref:        pT0 = 2.39 GeV gives sigma(parton-parton) = 7.09E+02 mb: accepted
+test/cmsDriver.py.Qcd.oref:        pT0 = 2.39 GeV gives sigma(parton-parton) = 2.82E+02 mb: accepted
+test/cmsRun.Pt10.oref:[oval run] TEST_RAW_FILE = SingleElectronPt10Raw.root
+test/cmsRun.Pt10.oref:[oval run] TEST_RECO_FILE = SingleElectronPt10.root
+test/cmsRun.Pt10.oref:29-Apr-2009 16:21:47 CEST  Initiating request to open file file:SingleElectronPt10Raw.root
+test/cmsRun.Pt10.oref:29-Apr-2009 16:21:56 CEST  Successfully opened file file:SingleElectronPt10Raw.root
+test/cmsRun.Pt10.oref:29-Apr-2009 16:23:34 CEST  Closed file file:SingleElectronPt10Raw.root
+test/cmsRun.Qcd.oref:[oval run] TEST_RAW_FILE = QCD_Pt_80_120_Raw.root
+test/cmsRun.Qcd.oref:[oval run] TEST_RECO_FILE = QCD_Pt_80_120.root
+test/cmsRun.Qcd.oref:29-Apr-2009 16:15:30 CEST  Initiating request to open file file:QCD_Pt_80_120_Raw.root
+test/cmsRun.Qcd.oref:29-Apr-2009 16:15:39 CEST  Successfully opened file file:QCD_Pt_80_120_Raw.root
+test/cmsRun.Qcd.oref:29-Apr-2009 16:18:14 CEST  Closed file file:QCD_Pt_80_120_Raw.root
+test/dbs_discovery.py:# DBS_SAMPLE, for example RelValSingleElectronPt35
+test/dbs_discovery.py:    headers = { 'User-Agent':agent, 'Accept':ctypes}
+test/dbs_discovery.py:    except urllib2.HTTPError, e:
+test/egammaClustersToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/26338BA9-5899-DD11-BD75-000423D985B0.root',
+test/egammaClustersToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/6A430ADA-5999-DD11-994D-001617C3B5D8.root',
+test/egammaClustersToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/F2E24023-5899-DD11-BFBF-000423D94A20.root',
+test/egammaClustersToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/FE4A6F3F-FD99-DD11-9587-000423D98750.root'
+test/egammaClustersToGsfElectrons_cfg.py:       '/store/relval/CMSSW_3_1_0_pre1/RelValSingleElectronPt35/GEN-SIM-DIGI-RAW-HLTDEBUG/IDEAL_30X_v1/0001/2A118AB2-E2F7-DD11-BF41-000423D33970.root',
+test/egammaClustersToGsfElectrons_cfg.py:       '/store/relval/CMSSW_3_1_0_pre1/RelValSingleElectronPt35/GEN-SIM-DIGI-RAW-HLTDEBUG/IDEAL_30X_v1/0001/3C20F64F-E0F7-DD11-995E-001617C3B76E.root',
+test/egammaClustersToGsfElectrons_cfg.py:       '/store/relval/CMSSW_3_1_0_pre1/RelValSingleElectronPt35/GEN-SIM-DIGI-RAW-HLTDEBUG/IDEAL_30X_v1/0001/F43C3B85-E1F7-DD11-BE69-001617C3B78C.root' 
+test/egammaClustersToGsfElectrons_cfg.py:    outputFile = cms.string("gsfElectronHistos_RelVal330pre1SingleElectronPt35_testnewconfig_isEndcaps.root"),
+test/egammaClustersToGsfElectrons_cfg.py:    MaxPt = cms.double(100.0),
+test/egammaClustersToGsfElectrons_cfg.py:    Ptmax = cms.double(100.0),
+test/egammaClustersToGsfElectrons_cfg.py:    Nbinpteff = cms.int32(19),
+test/egammaClustersToGsfElectrons_cfg.py:    Nbinpt2D = cms.int32(50),
+test/egammaClustersToGsfElectrons_cfg.py:    Nbinpt = cms.int32(50),
+test/egammaGenToGsfElectrons_cfg.py:process.source = cms.Source("EmptySource")
+test/egammaGenToGsfElectrons_cfg.py:process.generator = cms.EDProducer("FlatRandomPtGunProducer",
+test/egammaGenToGsfElectrons_cfg.py:        MaxPt = cms.double(35.),
+test/egammaGenToGsfElectrons_cfg.py:        MinPt = cms.double(35.),
+test/egammaGenToGsfElectrons_cfg.py:    psethack = cms.string('single electron pt 35'),
+test/egammaGenToGsfElectrons_cfg.py:    fileName = cms.untracked.string('SingleElectronPt35.root')
+test/egammaRecHitsToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/26338BA9-5899-DD11-BD75-000423D985B0.root',
+test/egammaRecHitsToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/6A430ADA-5999-DD11-994D-001617C3B5D8.root',
+test/egammaRecHitsToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/F2E24023-5899-DD11-BFBF-000423D94A20.root',
+test/egammaRecHitsToElectronSeeds_cfg.py:     '/store/relval/CMSSW_2_1_10/RelValSingleElectronPt10/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/IDEAL_V9_v2/0000/FE4A6F3F-FD99-DD11-9587-000423D98750.root'
+test/offlineSiStripSeeds_cfg.py:cms.untracked.vstring('/store/relval/2008/7/13/RelVal-RelValSingleElectronPt35-1215820444-IDEAL_V5-2nd/RelValSingleElectronPt35/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/CMSSW_2_1_0_pre8-RelVal-1215820444-IDEAL_V5-2nd-IDEAL_V5-unmerged/0000/14AD4148-F850-DD11-A295-000423D98DD4.root','/store/relval/2008/7/13/RelVal-RelValSingleElectronPt35-1215820444-IDEAL_V5-2nd/RelValSingleElectronPt35/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/CMSSW_2_1_0_pre8-RelVal-1215820444-IDEAL_V5-2nd-IDEAL_V5-unmerged/0000/F082A8E5-F650-DD11-B6DA-0019DB2F3F9B.root')
