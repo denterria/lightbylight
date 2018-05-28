@@ -222,6 +222,7 @@ ggHiNtuplizer::ggHiNtuplizer(const edm::ParameterSet& ps):
   tree_->Branch("phoEt",                 &phoEt_);
   tree_->Branch("phoEta",                &phoEta_);
   tree_->Branch("phoPhi",                &phoPhi_);
+  tree_->Branch("phoSCSize",             &phoSCSize_);
   tree_->Branch("phoSCE",                &phoSCE_);
   tree_->Branch("phoSCEt",               &phoSCEt_);
   tree_->Branch("phoSCRawE",             &phoSCRawE_);
@@ -373,6 +374,7 @@ ggHiNtuplizer::ggHiNtuplizer(const edm::ParameterSet& ps):
   tree_->Branch("hyphoEt",                 &hyphoEt_);
   tree_->Branch("hyphoEta",                &hyphoEta_);
   tree_->Branch("hyphoPhi",                &hyphoPhi_);
+  tree_->Branch("hyphoSCSize",             &hyphoSCSize_);
   tree_->Branch("hyphoSCE",                &hyphoSCE_);
   tree_->Branch("hyphoSCEt",               &hyphoSCEt_);
   tree_->Branch("hyphoSCRawE",             &hyphoSCRawE_);
@@ -654,6 +656,7 @@ void ggHiNtuplizer::analyze(const edm::Event& e, const edm::EventSetup& es)
   phoEt_                .clear();
   phoEta_               .clear();
   phoPhi_               .clear();
+  phoSCSize_            .clear();
   phoSCE_               .clear();
   phoSCEt_              .clear();
   phoSCRawE_            .clear();
@@ -800,6 +803,7 @@ void ggHiNtuplizer::analyze(const edm::Event& e, const edm::EventSetup& es)
   hyphoEt_                .clear();
   hyphoEta_               .clear();
   hyphoPhi_               .clear();
+  hyphoSCSize_            .clear();
   hyphoSCE_               .clear();
   hyphoSCEt_              .clear();
   hyphoSCRawE_            .clear();
@@ -1433,6 +1437,7 @@ void ggHiNtuplizer::fillPhotons(const edm::Event& e, const edm::EventSetup& es, 
     phoEt_            .push_back(pho->et());
     phoEta_           .push_back(pho->eta());
     phoPhi_           .push_back(pho->phi());
+    phoSCSize_        .push_back(pho->superCluster()->clustersSize());
     phoSCE_           .push_back(pho->superCluster()->energy());
     phoSCEt_          .push_back(pho->superCluster()->energy()/cosh(pho->superCluster()->eta()));
     phoSCRawE_        .push_back(pho->superCluster()->rawEnergy());
@@ -1851,6 +1856,7 @@ void ggHiNtuplizer::fillGsfPhotons(const edm::Event& e, const edm::EventSetup& e
     hyphoEt_            .push_back(hypho->et());
     hyphoEta_           .push_back(hypho->eta());
     hyphoPhi_           .push_back(hypho->phi());
+    hyphoSCSize_        .push_back(hypho->superCluster()->clustersSize());
     hyphoSCE_           .push_back(hypho->superCluster()->energy());
     hyphoSCEt_          .push_back(hypho->superCluster()->energy()/cosh(hypho->superCluster()->eta()));
     hyphoSCRawE_        .push_back(hypho->superCluster()->rawEnergy());

@@ -302,6 +302,7 @@ class ggHiNtuplizer : public edm::EDAnalyzer {
    vector<float>  phoEt_;
    vector<float>  phoEta_;
    vector<float>  phoPhi_;
+   vector<int>    phoSCSize_;
    vector<float>  phoSCE_;
    vector<float>  phoSCEt_;
    vector<float>  phoSCRawE_;
@@ -453,6 +454,7 @@ class ggHiNtuplizer : public edm::EDAnalyzer {
    vector<float>  hyphoEt_;
    vector<float>  hyphoEta_;
    vector<float>  hyphoPhi_;
+   vector<int>    hyphoSCSize_;
    vector<float>  hyphoSCE_;
    vector<float>  hyphoSCEt_;
    vector<float>  hyphoSCRawE_;
